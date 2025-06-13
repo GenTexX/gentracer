@@ -8,20 +8,28 @@ project "gentracer"
     language "C++"
     cppdialect "C++17"
     targetdir "bin/%{cfg.buildcfg}"
-    objdir "bin-int/%{cfg.buildcfg}"
+    objdir "int/%{cfg.buildcfg}"
 
     files { "src/**.h", "src/**.cpp" }
 
-    includedirs { "vendor/SDL2/include" }
+    includedirs { "/usr/include" }
 
     --libdirs { "vendor/SDL2/lib" }  -- Adjust this based on your OS
-    --links { "SDL2", "SDL2main" }
+    links { "spdlog", "fmt" }  -- both are required
+    defines { "SPDLOG_FMT_EXTERNAL" }
+    
 
     filter "system:windows"
         systemversion "latest"
         --links { "SDL2.lib", "SDL2main.lib" }
 
-    --filter "system:linux"
+    filter "system:linux"
+       defines {
+            "GLM_FORCE_INTRINSICS",
+            "GLM_FORCE_SIMD_AVX2",
+            "GLM_FORCE_RADIANS",
+            "GLM_ENABLE_EXPERIMENTAL"
+        } 
         --links { "SDL2", "SDL2main", "SDL2_image", "m" }
 
     filter "configurations:Debug"

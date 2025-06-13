@@ -1,5 +1,5 @@
 bin
-bin-int
+int
 
 gentracer.make
 Makefile
