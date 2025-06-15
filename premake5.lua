@@ -12,7 +12,7 @@ project "gentracer"
 
     files { "src/**.h", "src/**.cpp" }
 
-    includedirs { "/usr/include" }
+    includedirs { "/usr/include", "external" }
 
     --libdirs { "vendor/SDL2/lib" }  -- Adjust this based on your OS
     links { "spdlog", "fmt" }  -- both are required

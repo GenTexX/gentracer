@@ -1,5 +1,7 @@
 bin
 int
+logs
+
 
 gentracer.make
 Makefile

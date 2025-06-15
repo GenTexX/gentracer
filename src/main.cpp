@@ -7,18 +7,15 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 
 #include "image/image.h"
-
+#include "image/image_writer.h"
+#include "logger/logger.h"
 int main() {
 
     // logger
-    auto console = spdlog::stdout_color_mt("console");
+    Logger::init();
 
-    console->set_level(spdlog::level::debug);
+    LOG_INFO("Hello World");
 
-    console->debug("Hello World!");
-    console->info("Hello World!");
-    console->warn("Hello World!");
-    console->error("Hello World!");
     // Image
     int imageWidth = 256;
     int imageHeight = 256;
@@ -43,6 +40,10 @@ int main() {
         }
 
     }
+
+    ImageWriter imgWriter("myimage.ppm");
+
+    imgWriter.write(Image::IMAGE_TYPE_PPM, img);
 
     std::clog << "\rDone                              \n";
 
