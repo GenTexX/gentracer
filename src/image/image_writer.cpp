@@ -4,7 +4,7 @@
 #include <string>
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-#include <stb/stb_image_write.h>
+#include <stb_image_write.h>
 
 #include "../logger/logger.h"
 
@@ -21,10 +21,10 @@ void ImageWriter::write(const Image::ImageType& type, const Image& img) {
     switch (type) {
 
         case Image::IMAGE_TYPE_PNG:
-            this->writePng(img.getWidth(), img.getWidth(), img.data().data());
+            this->writePng(img.getWidth(), img.getHeight(), rawImg.data());
             break;
         case Image::IMAGE_TYPE_PPM:
-            this->writePpm(img.getWidth(), img.getHeight(), img.data().data());
+            this->writePpm(img.getWidth(), img.getHeight(), rawImg.data());
             break;
     
     }

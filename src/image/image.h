@@ -30,6 +30,8 @@ class Image {
         int getWidth() const { return m_Width; }
         int getHeight() const { return m_Height; }
 
+        float getAspectRatio() { return static_cast<float>(m_Width) / static_cast<float>(m_Height); }
+
     private:
         int m_Width;
         int m_Height;

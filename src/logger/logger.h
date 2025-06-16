@@ -1,5 +1,6 @@
 #pragma once
 
+#include <glm/ext/vector_float3.hpp>
 #include <memory>
 #include <fstream>
 #include <spdlog/spdlog.h>
@@ -26,6 +27,17 @@ public:
 
 private:
     static std::shared_ptr<spdlog::logger> s_Logger;
+};
+
+
+template <>
+struct fmt::formatter<glm::vec3> {
+    constexpr auto parse(format_parse_context& ctx) { return ctx.begin(); }
+
+    template <typename FormatContext>
+    auto format(const glm::vec3& v, FormatContext& ctx) {
+        return format_to(ctx.out(), "({}, {}, {})", v.x, v.y, v.z);
+    }
 };
 
 // Logging macros

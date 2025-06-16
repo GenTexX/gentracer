@@ -4,6 +4,7 @@ logs
 
 
 gentracer.make
+imgui.make
 Makefile
 
-image.ppm
+imgui.ini
